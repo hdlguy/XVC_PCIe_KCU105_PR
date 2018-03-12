@@ -17,14 +17,9 @@ module PR_module_A (
 
 wire [15:0] sine_data_out;
 
-sine_wave u_sine_wave(
-    .clk(clk),
-    .sig_data(sine_data_out));
+sine_wave u_sine_wave( .clk(clk), .sig_data(sine_data_out));
+ila_x16 U_ila_x16_sin ( .clk(clk), .probe0(sine_data_out) );
 
-ila_x16 U_ila_x16_sin (
-	.clk(clk), // input wire clk
-	.probe0(sine_data_out) // input wire [15:0] probe0
-);
 debug_bridge_PR U_debug_bridge_PR (
   .clk(clk),          // input wire clk
   .S_BSCAN_drck(S_BSCAN_drck),        // input wire S_BSCAN_drck
